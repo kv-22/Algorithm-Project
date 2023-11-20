@@ -17,11 +17,11 @@ def TSP(mask, pos, graph, dp,n, visited):
 	dp[mask][pos]=ans
 	return dp[mask][pos]
 
-graph = np.loadtxt('alg.txt', usecols=range(15), dtype=int)
+graph = np.loadtxt('alg.txt', usecols=range(15), dtype=int) # using numpy to read distances from txt and store in array
 print(graph)
-n = 15
+n = 15 // # number of nodes/cities
 visited = (1 << n) - 1
-r,c=32768,15
+r,c=32768,15 # this is for the momoization table, c is n and r is ( 1 << 15) binary representation of 1 shifted 15 units to left
 dp=[[-1 for j in range(c)]for i in range(r)]
 for i in range(0, (1<<n)):
 	for j in range(0, n):
