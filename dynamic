@@ -17,7 +17,7 @@ def TSP(mask, pos, graph, dp,n, visited):
 	dp[mask][pos]=ans
 	return dp[mask][pos]
 
-graph = np.loadtxt('/Users/kavyadhawan/Desktop/alg.txt', usecols=range(15), dtype=int)
+graph = np.loadtxt('alg.txt', usecols=range(15), dtype=int)
 print(graph)
 n = 15
 visited = (1 << n) - 1
