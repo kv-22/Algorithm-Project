@@ -19,6 +19,7 @@ def TSP(mask, pos, graph, dp,n, visited):
 	return dp[mask][pos]
 
 # this loads the distance matrix for the cities 
+
 n = 23  # number of nodes/cities
 graph = np.loadtxt('30.txt', usecols=range(n), max_rows=n, dtype=int) # using numpy to read distances from txt and store in array
 print("Distance matrix: ")
@@ -32,6 +33,7 @@ for i in range(0, (1<<n)):
 		dp[i][j] = -1
 
 # calculating the execution time
+
 start_time = time()
 print("Minimum distance: ", TSP(1, 0, graph, dp, n, visited))
 end_time = time()
