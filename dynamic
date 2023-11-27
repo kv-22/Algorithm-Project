@@ -20,7 +20,7 @@ def TSP(mask, pos, graph, dp,n, visited):
 
 # this loads the distance matrix for the cities 
 
-n = 23  # number of nodes/cities
+n = 20  # number of nodes/cities
 graph = np.loadtxt('30.txt', usecols=range(n), max_rows=n, dtype=int) # using numpy to read distances from txt and store in array
 print("Distance matrix: ")
 print(graph)
