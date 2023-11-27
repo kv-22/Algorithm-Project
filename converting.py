@@ -3,7 +3,8 @@
 
 import numpy as np
 
-data = np.loadtxt('312.txt')
+n=312
+data = np.loadtxt('312.txt', usecols=range(2), max_rows=n)
 
 # Calculate the distance matrix
 distance_matrix = np.zeros((len(data), len(data)))

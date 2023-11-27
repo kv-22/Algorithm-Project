@@ -21,9 +21,17 @@ def TSP(mask, pos, graph, dp,n, visited):
 # this loads the distance matrix for the cities 
 
 n = 20  # number of nodes/cities
-graph = np.loadtxt('30.txt', usecols=range(n), max_rows=n, dtype=int) # using numpy to read distances from txt and store in array
+data = np.loadtxt('312.txt', usecols=range(2), max_rows=n) # using numpy to read distances from txt and store in array
+distance_matrix = np.zeros((len(data), len(data)))
+print(distance_matrix.shape)
+for i in range(len(data)):
+    for j in range(i + 1, len(data)):
+        distance = np.linalg.norm(data[i] - data[j])
+        distance_matrix[i, j] = distance
+        distance_matrix[j, i] = distance 
+new_distance_matrix = distance_matrix.round().astype(int)
 print("Distance matrix: ")
-print(graph)
+print(new_distance_matrix)
 
 visited = (1 << n) - 1
 r,c=2**n,n # this is for the momoization table, c is n and r is ( 1 << n) binary representation of 1 shifted n times to left, or 2^n
@@ -32,13 +40,13 @@ for i in range(0, (1<<n)):
 	for j in range(0, n):
 		dp[i][j] = -1
 
+
 # calculating the execution time
 
 start_time = time()
-print("Minimum distance: ", TSP(1, 0, graph, dp, n, visited))
+print("Minimum distance: ", TSP(1, 0, new_distance_matrix, dp, n, visited))
 end_time = time()
 time_taken = end_time-start_time
 print("Time taken in seconds in: ", time_taken)
-
 
 
