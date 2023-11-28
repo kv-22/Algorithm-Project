@@ -1,4 +1,5 @@
 import numpy as np
+from time import time
 
 def findMinRoute(tsp):
     sum = 0
@@ -34,7 +35,7 @@ def findMinRoute(tsp):
     sum += mn 
     print(sum)
     
-n = 300 # number of nodes/cities
+n = 20 # number of nodes/cities
 data = np.loadtxt('312.txt', usecols=range(2), max_rows=n) # using numpy to read distances from txt and store in array
 distance_matrix = np.zeros((len(data), len(data)))
 print(distance_matrix.shape)
@@ -47,4 +48,11 @@ new_distance_matrix = distance_matrix.round().astype(int)
 print("Distance matrix: ")
 print(new_distance_matrix)
 
+# calculating the execution time
+
+start_time = time()
+print("Minimum distance: ", end='')
 findMinRoute(new_distance_matrix)
+end_time = time()
+time_taken = end_time-start_time
+print("Time taken in seconds in: ", time_taken)
