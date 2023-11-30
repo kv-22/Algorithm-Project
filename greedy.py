@@ -50,9 +50,10 @@ print(new_distance_matrix)
 
 # calculating the execution time
 
+print("Number of cities: ", n)
 start_time = time()
 print("Minimum distance: ", end='')
 findMinRoute(new_distance_matrix)
 end_time = time()
-time_taken = end_time-start_time
-print("Time taken in seconds in: ", time_taken)
+time_taken = (end_time-start_time) * 1000
+print("Time taken in milliseconds: ", time_taken)
