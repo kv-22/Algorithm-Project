@@ -3,6 +3,7 @@ from time import time
 
 MAX = 999999
 
+# to find the distance
 def TSP(mask, pos, graph, dp,n, visited):
 	if mask == visited:
 		return graph[pos][0]
@@ -12,26 +13,27 @@ def TSP(mask, pos, graph, dp,n, visited):
 	ans = MAX 
 	for city in range(0, n):
 		if ((mask & (1 << city)) == 0):
-			new = graph[pos][city] + TSP(mask|(1<<city),city, graph, dp, n, visited)
+			new = graph[pos][city] + TSP(mask|(1<<city),city, graph, dp, n, visited) # recursive call
 			ans = min(ans, new)
 	
 	dp[mask][pos]=ans
 	return dp[mask][pos]
 
-# this loads the distance matrix for the cities 
+# input for size from user
+while True:
+	n = int(input("Enter number of cities you want to run the algorithm for (between 2 and 312).\n\nNOTE: Running for values higher than 22 will likely cause the program to crash.\n\n>>"))  # number of nodes/cities
+	if 2 <= n <= 312:
+		break
 
-n = 12 # number of nodes/cities
+ # load the distance matrix for the cities 
 data = np.loadtxt('312.txt', usecols=range(2), max_rows=n) # using numpy to read distances from txt and store in array
 distance_matrix = np.zeros((len(data), len(data)))
-print(distance_matrix.shape)
 for i in range(len(data)):
     for j in range(i + 1, len(data)):
         distance = np.linalg.norm(data[i] - data[j])
         distance_matrix[i, j] = distance
         distance_matrix[j, i] = distance 
 new_distance_matrix = distance_matrix.round().astype(int)
-print("Distance matrix: ")
-print(new_distance_matrix)
 
 visited = (1 << n) - 1
 r,c=2**n,n # this is for the momoization table, c is n and r is ( 1 << n) binary representation of 1 shifted n times to left, or 2^n
@@ -44,9 +46,9 @@ for i in range(0, (1<<n)):
 # calculating the execution time
 print("Number of cities: ", n)
 start_time = time()
-print("Minimum distance: ", TSP(1, 0, new_distance_matrix, dp, n, visited))
+print("Minimum distance: ", TSP(1, 0, new_distance_matrix, dp, n, visited)) # function call
 end_time = time()
-time_taken = (end_time-start_time) * 1000
+time_taken = (end_time-start_time) * 1000 # convert to milliseconds
 print("Time taken in milliseconds: ", time_taken)
 
 

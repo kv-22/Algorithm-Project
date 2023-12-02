@@ -1,6 +1,7 @@
 import numpy as np
 from time import time
 
+# to find the distance
 def findMinRoute(tsp):
     sum = 0
     counter = 0
@@ -34,26 +35,29 @@ def findMinRoute(tsp):
         
     sum += mn 
     print(sum)
-    
-n = 20 # number of nodes/cities
+
+# input for size from user
+while True:
+    n = int(input("Enter number of cities you want to run the algorithm for (between 2 and 312).\n>>")) # number of nodes/cities
+    if 2 <= n <= 312:
+        break
+
+# load the distance matrix for the cities
 data = np.loadtxt('312.txt', usecols=range(2), max_rows=n) # using numpy to read distances from txt and store in array
 distance_matrix = np.zeros((len(data), len(data)))
-print(distance_matrix.shape)
 for i in range(len(data)):
     for j in range(i + 1, len(data)):
         distance = np.linalg.norm(data[i] - data[j])
         distance_matrix[i, j] = distance
         distance_matrix[j, i] = distance 
 new_distance_matrix = distance_matrix.round().astype(int)
-print("Distance matrix: ")
-print(new_distance_matrix)
 
 # calculating the execution time
 
 print("Number of cities: ", n)
 start_time = time()
 print("Minimum distance: ", end='')
-findMinRoute(new_distance_matrix)
+findMinRoute(new_distance_matrix) # function call
 end_time = time()
-time_taken = (end_time-start_time) * 1000
+time_taken = (end_time-start_time) * 1000 # convert to milliseconds
 print("Time taken in milliseconds: ", time_taken)
