@@ -13,7 +13,7 @@ def TSP(mask, pos, graph, dp,n, visited):
 	ans = MAX 
 	for city in range(0, n): # n 
 		if ((mask & (1 << city)) == 0):
-			new = graph[pos][city] + TSP(mask|(1<<city),city, graph, dp, n, visited) # recursive call 2^n,, each city does this n*2^n but we have n cities so n^2 * 2^n
+			new = graph[pos][city] + TSP(mask|(1<<city),city, graph, dp, n, visited)
 			ans = min(ans, new)
 	
 	dp[mask][pos]=ans
@@ -38,15 +38,7 @@ new_distance_matrix = distance_matrix.round().astype(int)
 visited = (1 << n) - 1
 r,c=2**n,n # this is for the momoization table, c is n and r is ( 1 << n) binary representation of 1 shifted n times to left, or 2^n
 dp=[[-1 for j in range(c)]for i in range(r)]
-# this is the same thing as above no need
-# print("before")
-# print(dp)
-# for i in range(0, (1<<n)):
-# 	for j in range(0, n):
-# 		dp[i][j] = -1
-# print("after")
-# print(dp)
-# print(len(dp))
+
 
 
 # calculating the execution time
