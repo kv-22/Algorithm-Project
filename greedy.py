@@ -11,7 +11,7 @@ def findMinRoute(tsp):
     visitedRouteList = {}
     visitedRouteList[0] = 1
     route = [0] *len(tsp)
-    while i < len(tsp) and j < len(tsp[i]): # n 
+    while i < len(tsp) and j < len(tsp[i]): 
         if counter >= len(tsp[i]) - 1:
             break
         if j!=i and j not in visitedRouteList:
@@ -28,7 +28,7 @@ def findMinRoute(tsp):
             counter += 1
     
     i = route[counter - 1] - 1 
-    for  j in range(0, len(tsp)): # n 
+    for  j in range(0, len(tsp)): 
         if i != j and tsp[i][j] < mn: 
             mn = tsp[i][j]
             route[counter] = j + 1 
